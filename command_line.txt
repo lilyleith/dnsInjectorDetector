@@ -1,0 +1,14 @@
+Valid:
+python3 dnsinject.py -i eth0 -h hostnames
+python3 dnsinject.py -h hostnames -i eth0
+python3 dnsinject.py -h hostnames
+python3 dnsinject.py -i eth0
+python3 dnsinject.py 
+
+invalid:
+skips the interface: python3 dnsinject.py -i -h hostnames
+skips the hostname: python3 dnsinject.py -h -i eth0
+skips trailing interface: python3 dnsinject.py -h hostnames -i 
+provides none: python3 dnsinject.py -h -i
+provides just one flag: python3 dnsinject.py -i
+provides jsut one flag: python3 dnsinject.py -h

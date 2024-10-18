@@ -1,0 +1,7 @@
+Steps I took
+1. do all error checking for command line args
+    valid interface
+    valid # of args
+    works with any order of arguments
+    checks that the hostname file provided exists
+2. 
