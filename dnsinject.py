@@ -1,18 +1,8 @@
 import sys
 from scapy.all import sniff
 from scapy.layers.dns import DNS, DNSQR
-import psutil
 
-# helper function to check if the interface name provided by the user is valid
-def valid_interface(interface_name):
-    # pull the list of network interfaces
-    interfaces = psutil.net_if_addrs()
 
-    # if the interface is valid return 1
-    if interface_name in interfaces:
-        return 1
-    # else return 0
-    return 0
 
 # helper function to inspect the packet
 # this will be called in the sniff command in main
@@ -51,11 +41,7 @@ if __name__ == '__main__':
                 print("Please specify a network device after -i or remove the -i flag for a default network device.")
                 exit(0)
             interface = sys.argv[i + 1]
-            # check that following argument is a valid interface, exit if not
-            if (valid_interface(interface) != 1):
-                print("Invalid network devide interface provided. Please provide a valid interface name.")
-                exit(0)
-            # if valid, skip to the argument after the interface name
+            # skip to the arg after the interface
             i += 2
         # if the h flag is present
         elif sys.argv[i] == "-h":
