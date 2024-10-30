@@ -1,6 +1,9 @@
+#! /usr/bin/python
 import sys
 from scapy.all import sniff
 from scapy.layers.dns import DNS, DNSQR
+from scapy.config import conf; 
+
 
 
 
@@ -14,7 +17,7 @@ def inspect_packet(packet):
 
 
 if __name__ == '__main__':
-
+    conf.use_pcap = True
     # number of command line arguments
     num_args = len(sys.argv)
     
@@ -70,5 +73,5 @@ if __name__ == '__main__':
 
     # sniff packets on port 53 used for udp dns packets
     # send the packets to inspect_packet function for inspection and filtering
-    sniff(filter = "udp port 53", iface = interface, prn = inspect_packet, store = 0)
+    sniff(filter = "udp port 53", iface = interface, prn = lambda x: x.summary(), store = 0, monitor = True)
     exit(0)
